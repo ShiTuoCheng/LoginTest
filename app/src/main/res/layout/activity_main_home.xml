@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shituocheng.stcdribbble.logintest.MainHomeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="最近更新"
+                android:layout_below="@id/banner"
+                android:textSize="16sp"
+                android:padding="16dp"/>
+
+            <cn.lemon.view.RefreshRecyclerView
+                android:padding="16dp"
+                android:layout_below="@id/title"
+                android:id="@+id/recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                app:refresh_able="false"
+                app:load_more_able="false"/>
+
+            <TextView
+                android:layout_below="@id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="dajysbfkjbydskjfyasdjbyfjkdlbsyafjklbyadsbyfkjabyfkjadsbyfkbysdkljfbykdsbyfkdsbyfklabydkfladsylkbflydaslfkbsdafbykajbfylkjdyfkbjdaybfkjdsybflkdsyfblkdsayflbkdjyflkayfbkjladbyfkjdbyfkajlfbydafyb"/>
+        </RelativeLayout>
+    </ScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:background="@android:color/white"
+        android:clickable="true"
+        app:itemIconTint="@drawable/tab_color_selector"
+        app:itemTextColor="@drawable/tab_color_selector"
+        app:elevation="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/navigation"
+        />
+
+</LinearLayout>

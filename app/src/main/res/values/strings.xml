@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LoginTest</string>
+    <string name="login_hint">邮箱／用户名／手机号</string>
+    <string name="password_hint">登录密码</string>
+</resources>
