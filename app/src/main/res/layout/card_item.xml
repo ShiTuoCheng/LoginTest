@@ -9,7 +9,7 @@
         android:layout_marginRight="6dp"
         android:layout_marginBottom="0dp"
         android:id="@+id/cardView"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="4dp"

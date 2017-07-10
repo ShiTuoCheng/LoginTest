@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:clickable="true"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.shituocheng.stcdribbble.logintest.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -22,11 +23,12 @@
             android:background="#00000000">
 
             <Button
+                android:layout_marginTop="20dp"
                 android:id="@+id/closeButton"
                 android:padding="0dp"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:textSize="20sp"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:textSize="30sp"
                 android:text="X"
                 android:background="#00000000"/>
         </android.support.v7.widget.Toolbar>
@@ -60,6 +62,7 @@
 
     <android.support.design.widget.TextInputLayout
 
+        app:passwordToggleEnabled="true"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:id="@+id/passwordTextInput"
@@ -68,6 +71,7 @@
         android:layout_below="@id/loginTextInput"
         android:layout_marginTop="6dp">
         <EditText
+            android:inputType="textWebPassword"
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordTextInput"
         android:layout_marginTop="16dp"
+        android:shadowColor="@color/colorAccent"
         android:background="@color/colorPrimary"
         android:textColor="#fff"
         android:text="登录"/>

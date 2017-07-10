@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity{
     private ImageView imageView;
     private Button loginButton;
     private Button closeButton;
-    private EditText userInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +51,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        userInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b){
-                    InputMethodManager imm = (InputMethodManager)
-                            getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(userInput.getWindowToken(), 0);
-                }
-            }
-        });
-
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +61,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+    //初始化视图
     private void initView(){
         steepStatusBar();
         imageView = (ImageView)findViewById(R.id.jdIcon);
@@ -82,8 +71,6 @@ public class MainActivity extends AppCompatActivity{
         RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), id2Bitmap(this, R.mipmap.com_jingdong_app_mall_icon));
         roundedBitmapDrawable.setCircular(true);
         imageView.setImageDrawable(roundedBitmapDrawable);
-
-        userInput = (EditText) findViewById(R.id.userInput);
     }
 
     //设置沉浸式状态栏
@@ -112,7 +99,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //重载跳转activity方法
-    public static void jumpToActivity(Context context, Class destinationActivity, Bundle bundle, String dataName){
+    public static void jumpToActivity(Context context, Class destinationActivity, Bundle bundle, String dataName) {
         Intent intent = new Intent(context, destinationActivity);
         intent.putExtra(dataName, bundle);
         context.startActivity(intent);

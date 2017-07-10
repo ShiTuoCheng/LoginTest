@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context="com.shituocheng.stcdribbble.logintest.MainHomeActivity">
 
-    <ScrollView
+    <com.shituocheng.stcdribbble.logintest.MyScrollView
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp">
@@ -39,14 +39,37 @@
                 app:refresh_able="false"
                 app:load_more_able="false"/>
 
-            <TextView
+            <TableLayout
+                android:id="@+id/tabLayout"
                 android:layout_below="@id/recycler_view"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <android.support.v4.view.ViewPager
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:text="dajysbfkjbydskjfyasdjbyfjkdlbsyafjklbyadsbyfkjabyfkjadsbyfkbysdkljfbykdsbyfkdsbyfklabydkfladsylkbflydaslfkbsdafbykajbfylkjdyfkbjdaybfkjdsybflkdsyfblkdsayflbkdjyflkayfbkjladbyfkjdbyfkajlfbydafyb"/>
+                android:layout_below="@id/tabLayout"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/titleTextView"
+                android:layout_below="@id/recycler_view"
+                android:text="推荐"
+                android:textSize="16sp"
+                android:padding="16dp"/>
+
+            <cn.lemon.view.RefreshRecyclerView
+                android:layout_below="@id/titleTextView"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                app:load_more_able="false"
+                app:refresh_able="false"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_recyclerView"/>
+
         </RelativeLayout>
-    </ScrollView>
+    </com.shituocheng.stcdribbble.logintest.MyScrollView>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

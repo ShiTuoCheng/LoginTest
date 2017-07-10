@@ -2,4 +2,7 @@
     <string name="app_name">LoginTest</string>
     <string name="login_hint">邮箱／用户名／手机号</string>
     <string name="password_hint">登录密码</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

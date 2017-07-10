@@ -4,10 +4,13 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -21,6 +24,8 @@ import cn.lemon.view.RefreshRecyclerView;
 public class MainHomeActivity extends AppCompatActivity {
 
     private RefreshRecyclerView recyclerView;
+    private LinearLayout linearLayout;
+    private RefreshRecyclerView mainRecyclerView;
 
     private List<Integer> images = new ArrayList<>();
 
@@ -28,16 +33,26 @@ public class MainHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
-
+        initData();
         initView();
 
-        initData();
     }
 
     private void initData(){
 
         images.add(R.mipmap.demon_big);
         images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+
     }
 
     private void initView(){
@@ -45,7 +60,8 @@ public class MainHomeActivity extends AppCompatActivity {
 
         Banner banner = (Banner) findViewById(R.id.banner);
         recyclerView = (RefreshRecyclerView)findViewById(R.id.recycler_view);
-
+        mainRecyclerView = (RefreshRecyclerView)findViewById(R.id.main_recyclerView);
+        mainRecyclerView.getLayoutParams().height = 280 * images.size();
 
         CardViewActivity.CardAdapter cardAdapter = new CardViewActivity.CardAdapter(this, images);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -53,13 +69,19 @@ public class MainHomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(cardAdapter);
 
+        CardViewActivity.CardAdapter cardAdapter1 = new CardViewActivity.CardAdapter(this, images);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        mainRecyclerView.setLayoutManager(gridLayoutManager);
+        mainRecyclerView.setAdapter(cardAdapter1);
+        mainRecyclerView.setNestedScrollingEnabled(false);
+
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());
         banner.setBannerAnimation(Transformer.ForegroundToBackground);
         banner.setBannerStyle(BannerConfig.NUM_INDICATOR);
-
         banner.setImages(images);
-
         banner.start();
 
     }
