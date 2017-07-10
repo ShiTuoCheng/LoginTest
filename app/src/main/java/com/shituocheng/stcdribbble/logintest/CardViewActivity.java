@@ -9,6 +9,8 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -34,9 +36,35 @@ public class CardViewActivity extends AppCompatActivity {
 
         images.add(R.mipmap.demon_big);
         images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.demon_big);
+        images.add(R.mipmap.com_jingdong_app_mall_icon);
 
         initView();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+            this.finish();
+        }
+        return true;
     }
 
     private void initView(){
@@ -47,6 +75,9 @@ public class CardViewActivity extends AppCompatActivity {
         cardRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardRecyclerView.setAdapter(cardAdapter);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     public static class CardAdapter extends RecyclerAdapter<Integer> {

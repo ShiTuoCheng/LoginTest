@@ -1,7 +1,13 @@
 package com.shituocheng.stcdribbble.logintest;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -26,7 +32,9 @@ public class MainHomeActivity extends AppCompatActivity {
 
     private RefreshRecyclerView recyclerView;
     private LinearLayout linearLayout;
-    private RefreshRecyclerView mainRecyclerView;
+//    private RefreshRecyclerView mainRecyclerView;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     private List<Integer> images = new ArrayList<>();
 
@@ -61,8 +69,10 @@ public class MainHomeActivity extends AppCompatActivity {
 
         Banner banner = (Banner) findViewById(R.id.banner);
         recyclerView = (RefreshRecyclerView)findViewById(R.id.recycler_view);
-        mainRecyclerView = (RefreshRecyclerView)findViewById(R.id.main_recyclerView);
-        mainRecyclerView.getLayoutParams().height = (DensityUtil.dip2px(this, 212)) * (images.size()/2);
+        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        viewPager = (ViewPager)findViewById(R.id.viewPager);
+
+        viewPager.getLayoutParams().height = (DensityUtil.dip2px(this, 212)) * (images.size()/2);
 
         CardViewActivity.CardAdapter cardAdapter = new CardViewActivity.CardAdapter(this, images);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -70,20 +80,57 @@ public class MainHomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(cardAdapter);
 
-        CardViewActivity.CardAdapter cardAdapter1 = new CardViewActivity.CardAdapter(this, images);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-        mainRecyclerView.setLayoutManager(gridLayoutManager);
-        mainRecyclerView.setAdapter(cardAdapter1);
-        mainRecyclerView.setNestedScrollingEnabled(false);
-
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());
         banner.setBannerAnimation(Transformer.ForegroundToBackground);
         banner.setBannerStyle(BannerConfig.NUM_INDICATOR);
         banner.setImages(images);
         banner.start();
+
+        tabLayout.addTab(tabLayout.newTab().setText("test1"));
+        tabLayout.addTab(tabLayout.newTab().setText("test2"));
+
+        UserDetailPageAdapter userDetailPageAdapter = new UserDetailPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        viewPager.setAdapter(userDetailPageAdapter);
+        userDetailPageAdapter.notifyDataSetChanged();
+
+
+        viewPager.setOffscreenPageLimit(tabLayout.getTabCount() * 10);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 
@@ -101,5 +148,38 @@ public class MainHomeActivity extends AppCompatActivity {
         }
     }
 
+    private static class UserDetailPageAdapter extends FragmentStatePagerAdapter {
 
+        int number;
+
+        private UserDetailPageAdapter(FragmentManager fm, int number) {
+            super(fm);
+            this.number = number;
+        }
+
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position){
+                case 0:
+                    BlankFragment blankFragment = new BlankFragment();
+                    return blankFragment;
+                case 1:
+                    BlankFragment blankFragment1 = new BlankFragment();
+                    return blankFragment1;
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
+        @Override
+        public int getCount() {
+            return number;
+        }
+    }
 }
