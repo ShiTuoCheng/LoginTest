@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.util.Util;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -61,7 +62,7 @@ public class MainHomeActivity extends AppCompatActivity {
         Banner banner = (Banner) findViewById(R.id.banner);
         recyclerView = (RefreshRecyclerView)findViewById(R.id.recycler_view);
         mainRecyclerView = (RefreshRecyclerView)findViewById(R.id.main_recyclerView);
-        mainRecyclerView.getLayoutParams().height = 280 * images.size();
+        mainRecyclerView.getLayoutParams().height = (DensityUtil.dip2px(this, 212)) * (images.size()/2);
 
         CardViewActivity.CardAdapter cardAdapter = new CardViewActivity.CardAdapter(this, images);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
