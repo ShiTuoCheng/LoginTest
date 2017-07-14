@@ -3,6 +3,7 @@ package com.shituocheng.stcdribbble.logintest;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,11 +18,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.util.Util;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +39,7 @@ public class MainHomeActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private List<Integer> images = new ArrayList<>();
+    private List<Integer> images = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +52,13 @@ public class MainHomeActivity extends AppCompatActivity {
 
     private void initData(){
 
+        images = new ArrayList<>();
+        images.clear();
+
         images.add(R.mipmap.demon_big);
         images.add(R.mipmap.com_jingdong_app_mall_icon);
-        images.add(R.mipmap.demon_big);
-        images.add(R.mipmap.com_jingdong_app_mall_icon);
+        images.add(R.mipmap.ic_launcher_round);
+        images.add(R.mipmap.ic_launcher);
         images.add(R.mipmap.demon_big);
         images.add(R.mipmap.com_jingdong_app_mall_icon);
         images.add(R.mipmap.demon_big);
@@ -74,7 +80,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
         viewPager.getLayoutParams().height = (DensityUtil.dip2px(this, 212)) * (images.size()/2);
 
-        CardViewActivity.CardAdapter cardAdapter = new CardViewActivity.CardAdapter(this, images);
+        CardViewActivity.CardAdapter cardAdapter = new CardViewActivity.CardAdapter(getApplicationContext(), images);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -82,9 +88,17 @@ public class MainHomeActivity extends AppCompatActivity {
 
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());
-        banner.setBannerAnimation(Transformer.ForegroundToBackground);
-        banner.setBannerStyle(BannerConfig.NUM_INDICATOR);
+        banner.setBannerAnimation(Transformer.Tablet);
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         banner.setImages(images);
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                int item = images.get(position);
+                Toast.makeText(MainHomeActivity.this, String.valueOf(item), Toast.LENGTH_SHORT).show();
+                MainActivity.jumpToActivity(MainHomeActivity.this, DetailActivity.class);
+            }
+        });
         banner.start();
 
         tabLayout.addTab(tabLayout.newTab().setText("test1"));
