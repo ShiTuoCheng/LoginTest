@@ -42,6 +42,13 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_below="@id/recycler_view"
+                android:background="#000"
+                app:tabIndicatorColor="#af966f"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                app:tabMode="scrollable"
+                app:tabTextColor="#fff"
+                app:tabSelectedTextColor="#af966f"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

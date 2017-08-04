@@ -3,4 +3,7 @@
     <color name="colorPrimary">#009dff</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#009dff</color>
+    <color name="whiteColor">#ffffff</color>
+    <color name="blackColor">#000000</color>
+    <color name="goldColor">#af966f</color>
 </resources>

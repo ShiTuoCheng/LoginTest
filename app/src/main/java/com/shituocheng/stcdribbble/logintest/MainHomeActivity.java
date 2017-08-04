@@ -101,8 +101,13 @@ public class MainHomeActivity extends AppCompatActivity {
         });
         banner.start();
 
-        tabLayout.addTab(tabLayout.newTab().setText("test1"));
-        tabLayout.addTab(tabLayout.newTab().setText("test2"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.group_1).setText("宝贝"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.group).setText("保你麻痹"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.group).setText("傻逼"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.group).setText("test2"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.group_1).setText("宝贝"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.group).setText("保你麻痹"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.group).setText("傻逼"));
 
         UserDetailPageAdapter userDetailPageAdapter = new UserDetailPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
@@ -133,11 +138,14 @@ public class MainHomeActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                tabLayout.getTabAt(tab.getPosition()).setIcon(R.drawable.group_1);
+                tabLayout.setTabTextColors(getResources().getColor(R.color.whiteColor), getResources().getColor(R.color.goldColor));
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
+                tabLayout.getTabAt(tab.getPosition()).setIcon(R.drawable.group);
             }
 
             @Override
@@ -181,6 +189,21 @@ public class MainHomeActivity extends AppCompatActivity {
                 case 1:
                     BlankFragment blankFragment1 = new BlankFragment();
                     return blankFragment1;
+                case 2:
+                    BlankFragment blankFragment2 = new BlankFragment();
+                    return blankFragment2;
+                case 3:
+                    BlankFragment blankFragment3 = new BlankFragment();
+                    return blankFragment3;
+                case 4:
+                    BlankFragment blankFragment4 = new BlankFragment();
+                    return blankFragment4;
+                case 5:
+                    BlankFragment blankFragment5 = new BlankFragment();
+                    return blankFragment5;
+                case 6:
+                    BlankFragment blankFragment6 = new BlankFragment();
+                    return blankFragment6;
                 default:
                     return null;
             }
